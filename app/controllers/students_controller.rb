@@ -1,18 +1,18 @@
 class StudentsController < ApplicationController
-  def index
-    @students = Student.all
-  end
+  # def index
+  #   @students = Student.all
+  # end
 
   def show
+    @student = Student.find(params[:id])
+  end
+
+  def new
     @student = Student.new
   end
 
   def edit
     @student = Student.find(params[:id])
-  end
-
-  def post_params
-    params.require(:student).permit(:first_name, :last_name)
   end
 
   def create
@@ -29,7 +29,7 @@ class StudentsController < ApplicationController
 
   private
 
-  def post_params(*args)
+  def student_params(*args)
     params.require(:student).permit(*args)
   end
 
